@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Image, Menu } from 'semantic-ui-react'
+import { Button, Header, Image, Menu } from 'semantic-ui-react'
 import { setAuthedUser } from '../../redux/actions/authedUser'
 class NavBar extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => {
-    name === 'logout' ?
-      this.props.dispatch(setAuthedUser(null))
-      :
-      this.setState({ activeItem: name })
+    this.setState({ activeItem: name })
+  }
+  handleLogOut = () => {
+    this.props.dispatch(setAuthedUser(null))
+
   }
   render() {
     const { activeItem } = this.state
     const { authedUser, users } = this.props
     return (
-      <Menu secondary>
+      <Menu >
 
         <Menu.Item as={Link} active={activeItem === 'home'} to='/' name='home'
           onClick={this.handleItemClick}>Home</Menu.Item>
@@ -33,10 +34,11 @@ class NavBar extends Component {
                 Hello, {users[authedUser].name}
               </Menu.Item>
               <Menu.Item>
-                <Image src='https://iili.io/38O2s9.png' avatar />
+                <Image src={users[authedUser].avatarURL} avatar />
               </Menu.Item>
-              <Menu.Item as={Button} name='logout' active={activeItem === 'logout'}
-                onClick={this.handleItemClick} />
+              <Menu.Item >
+                <Button color='red' onClick={this.handleLogOut}>Log Out</Button>
+              </Menu.Item>
             </Menu.Menu>
         }
       </Menu>
