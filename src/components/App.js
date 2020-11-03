@@ -1,28 +1,38 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React from 'react'
 import './App.css';
 import LoginBox from './loginBox/loginBox'
+import NavBar from './navBar/navBar'
 import { connect } from 'react-redux'
-import {handleInitialData} from '../redux/actions/shared'
+import { handleInitialData } from '../redux/actions/shared'
 class App extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
   render() {
-    const authed = null
+    const { authedUser } = this.props
     return (
-      <div >
+      <div className='app'>
+        <NavBar />
         {
-          authed === null ?
+          authedUser === null ?
             <LoginBox />
             :
-            <Route exact path='/' render={() => <div>welcome to board</div>} />
+            <Switch>
+              <Route exact path='/' render={() => <div>welcome to home</div>} />
+              <Route path='/add' render={() => <div>welcome , add a question</div>} />
+              <Route path='/leaderboard' render={() => <div>welcome to leader board</div>} />
+              <Route render={() => <div>Page Not Found</div>} />
+            </Switch>
         }
       </div>
     )
   }
 }
 
-export default connect()(App);
+export default connect(
+  (state) => ({
+    authedUser: state.authedUser
+  }))(App);
