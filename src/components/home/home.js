@@ -2,32 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Poll from '../poll/poll'
 import { Tab } from 'semantic-ui-react'
-function Home({ authedUser, questions, users }) {
+function Home({ authedUser, questions, questionIDs, users }) {
 
-  const unansweredQuestionsIDs = Object.keys(questions).filter(questionID => {
+  const unansweredQuestionsIDs = questionIDs.filter(questionID => {
     return !Object.keys(users[authedUser].answers).includes(questionID)
   })
 
-  const answeredQuestionsIDs = Object.keys(users[authedUser].answers)
+  const answeredQuestionsIDs = Object.keys(users[authedUser].answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
-  const panes = [
-    {
-      menuItem: 'Answered Questions',
-      render: () => <Tab.Pane >{
-        answeredQuestionsIDs.map(id => <Poll key={id} id={id} />)
-      }
-      </Tab.Pane>
-    },
-    {
-      menuItem: 'Unanswered Questions',
-      render: () => <Tab.Pane>
-        {
-          unansweredQuestionsIDs.map(id => <Poll key={id} id={id} />)
-        }
-      </Tab.Pane>
+  const panes = [{ name: 'Unanswered Questions', value: unansweredQuestionsIDs },
+  { name: 'Answered Questions', value: answeredQuestionsIDs }].map(object => ({
+    menuItem: object.name,
+    render: () => <Tab.Pane >{
+      object.value.map(id => <Poll key={id} id={id} />)
     }
+    </Tab.Pane>
+  }))
 
-  ]
   return (
 
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -37,11 +28,12 @@ function Home({ authedUser, questions, users }) {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ authedUser, users, questions }) => {
   return {
-    authedUser: state.authedUser,
-    questions: state.questions,
-    users: state.users
+    authedUser,
+    users,
+    questions,
+    questionIDs: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
   }
 }
 export default connect(mapStateToProps)(Home) 

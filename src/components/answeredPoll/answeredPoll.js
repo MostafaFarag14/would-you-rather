@@ -20,7 +20,7 @@ const AnsweredPoll = ({ result }) => {
             authedUserChoice === 1 && <Icon name='pointing left' size='big' floated='right' />
           }
         </div>
-        <Progress percent={(optionOne / all) * 100} progress indicating>
+        <Progress percent={Math.round((optionOne / all) * 100)} progress indicating>
           {optionOne} of {all} votes
           </Progress>
 
@@ -32,7 +32,7 @@ const AnsweredPoll = ({ result }) => {
             authedUserChoice === 2 && <Icon name='pointing left' size='big' floated='right' />
           }
         </div>
-        <Progress percent={(optionTwo / all) * 100} progress indicating>
+        <Progress percent={Math.round((optionTwo / all) * 100)} progress indicating>
           {optionTwo} of {all} votes
           </Progress>
       </Card.Content>

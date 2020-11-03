@@ -1,10 +1,13 @@
-import { Route, Switch } from 'react-router-dom';
 import React from 'react'
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+
 import LoginBox from './loginBox/loginBox'
 import NavBar from './navBar/navBar'
 import Home from './home/home'
 import PollDetails from './pollDetails/pollDetails'
+import LeaderBoard from './leaderBoard/leaderBoard'
+import NewQuestion from './newQuestion/newQuestion'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../redux/actions/shared'
 class App extends React.Component {
@@ -24,8 +27,8 @@ class App extends React.Component {
             :
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/add' render={() => <div>welcome , add a question</div>} />
-              <Route path='/leaderboard' render={() => <div>welcome to leader board</div>} />
+              <Route path='/add' component={NewQuestion} />
+              <Route path='/leaderboard' component={LeaderBoard} />
               <Route path='/question/:id' component={PollDetails} />
               <Route render={() => <div>Page Not Found</div>} />
             </Switch>

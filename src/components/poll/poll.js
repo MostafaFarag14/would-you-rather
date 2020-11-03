@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, Image, Button, Header } from 'semantic-ui-react'
+import { formatDate } from '../../utils/api'
 function Poll({ id, users, questions }) {
 
   const name = users[questions[id].author].name
@@ -16,6 +17,7 @@ function Poll({ id, users, questions }) {
           src={avatarURL}
         />
         <Card.Header>{name} asks:</Card.Header>
+        <Card.Meta>{formatDate(questions[id].timestamp)}</Card.Meta>
         <Card.Description>
           <Header>would you rather</Header>
           {questions[id].optionOne.text}
@@ -23,7 +25,7 @@ function Poll({ id, users, questions }) {
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Link to={`question/${id}`} style={{width: '100%'}}>
+          <Link to={`question/${id}`} style={{ width: '100%' }}>
             <Button basic color='green' fluid>
               View Poll
           </Button>
