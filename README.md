@@ -6,6 +6,30 @@ The `_DATA.js` file represents a fake database and methods that let you access t
 
 Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
 
+
+## Project Description
+A voting app that enables user to login using one of some existing users, once logged in he can see all of poll questions made in the app, those questions are categorized to unanswered and answered questions by the logged in user. The user can't see the votes on some question until he vote in it, once voted he will see how many votes and percentage for each choice , and his choice will be marked, user can also post a poll question. There is a Leader board for all users ordered descending based on the sum the number of questions they’ve asked and the number of questions they’ve answered.
+
+## Functionality
+
+- User can login by choosing one of the existing users in a list.
+- logged in user name and photo appear on top right of the app.
+- User can logout using a button and login again.
+- User must be logged in to see any page in app.
+- Logged in user will see all of available poll questions currently posted
+- Questions are categorized to answered and unanswered by the user and arranged from the most recently created, user can toggle between them.
+- Unanswered questions information are hidden until user vote in that question
+- The option selected by the logged in user should be clearly marked.
+- There is a form to enable user to post his poll question.
+- Also there is a leaderboard page that display every user name, avatar, no. of questions he asked , no. of questions he answered and a total of them which represents Score.
+- Based on the Score users are ordered.
+- There is a navigation Bar to enable user to make a new question, see leaderboard, or go back to home.
+
+## Install
+* Make sure you have `NodeJs` installed
+* run `npm install` in your terminal to Install all project dependencies  
+* run `npm start` to run the app
+
 ## Data
 
 There are two types of objects stored in our database:
