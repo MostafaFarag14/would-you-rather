@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Button, Header, Form } from 'semantic-ui-react'
-import { handleSaveQuestion } from '../../redux/actions/questions'
+import { handleSaveQuestion } from '../redux/actions/shared'
 import { useHistory } from 'react-router-dom'
-function NewQuestion({ dispatch, authedUser, loadingBar }) {
+function NewQuestion({ dispatch, authedUser }) {
 
   const [options, setOptions] = useState({ optionOne: '', optionTwo: '' })
   const history = useHistory()
@@ -20,9 +20,11 @@ function NewQuestion({ dispatch, authedUser, loadingBar }) {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center'}}>
-      <Form onSubmit={handleSubmit} style={{ width: '50%', textAlign: 'center' ,
-       border:'2px solid #b4b7ca26', padding: '20px'}} >
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Form onSubmit={handleSubmit} style={{
+        width: '50%', textAlign: 'center',
+        border: '2px solid #b4b7ca26', padding: '20px'
+      }} >
         <Header size='huge'>Create New Question</Header>
         <Header>Would you rather..</Header>
         <Form.Input placeholder='Enter Option One Text'
@@ -44,8 +46,8 @@ function NewQuestion({ dispatch, authedUser, loadingBar }) {
 }
 
 export default connect(
-  ({ authedUser, loadingBar }) => ({
+  ({ authedUser }) => ({
     authedUser,
-    loadingBar
+
   })
 )(NewQuestion)

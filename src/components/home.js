@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Poll from '../poll/poll'
+import Poll from './poll'
 import { Tab } from 'semantic-ui-react'
 function Home({ authedUser, questions, questionIDs, users }) {
 

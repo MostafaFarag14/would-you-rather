@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Header, Image, Menu } from 'semantic-ui-react'
-import { setAuthedUser } from '../../redux/actions/authedUser'
+import { Button, Image, Menu } from 'semantic-ui-react'
+import { setAuthedUser } from '../redux/actions/authedUser'
 class NavBar extends Component {
   state = { activeItem: 'home' }
 

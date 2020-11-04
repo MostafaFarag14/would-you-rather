@@ -1,5 +1,5 @@
-import { GET_QUESTIONS, SAVE_ANSWER_TO_QUESTION, SAVE_QUESTION } from '../actions/questions'
-
+import { GET_QUESTIONS, SAVE_ANSWER_TO_QUESTION } from '../actions/questions'
+import { SAVE_QUESTION } from '../actions/shared'
 export default function questions(state = {}, action) {
   switch (action.type) {
     case GET_QUESTIONS:

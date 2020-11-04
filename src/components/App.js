@@ -1,16 +1,16 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
-
-import LoginBox from './loginBox/loginBox'
-import NavBar from './navBar/navBar'
-import Home from './home/home'
-import PollDetails from './pollDetails/pollDetails'
-import LeaderBoard from './leaderBoard/leaderBoard'
-import NewQuestion from './newQuestion/newQuestion'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../redux/actions/shared'
+
+import LoginBox from './loginBox'
+import NavBar from './navBar'
+import Home from './home'
+import PollDetails from './pollDetails'
+import LeaderBoard from './leaderBoard'
+import NewQuestion from './newQuestion'
 import LoadingBar from 'react-redux-loading';
+
 class App extends React.Component {
 
   componentDidMount() {
@@ -21,8 +21,8 @@ class App extends React.Component {
     const { authedUser } = this.props
     return (
       <div className='app'>
-        <LoadingBar />
         <NavBar />
+        <LoadingBar />
         {
           authedUser === null ?
             <LoginBox />
@@ -31,7 +31,7 @@ class App extends React.Component {
               <Route exact path='/' component={Home} />
               <Route path='/add' component={NewQuestion} />
               <Route path='/leaderboard' component={LeaderBoard} />
-              <Route path='/question/:id' component={PollDetails} />
+              <Route path='/questions/:id' component={PollDetails} />
               <Route render={() => <div>Page Not Found</div>} />
             </Switch>
         }
