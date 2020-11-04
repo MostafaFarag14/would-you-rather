@@ -40,13 +40,13 @@ function LeaderBoardField({ id, users }) {
           }}>
             <Header>Score</Header>
           </div>
-          <div style={{ padding: '25%' }}>
+          <div>
             <div style={{
-              backgroundColor: '#00a3d2',
-              padding: '30%',
-              borderRadius: '50%'
+         
+              padding: '15%'
+ 
             }}>
-              <Header style={{ color: 'white' }}>{
+              <Header size='huge' color='teal'>{
                 answeredQuestionsCount + QuestionsCount
               }</Header>
             </div>

@@ -1,25 +1,51 @@
 import React, { useState } from 'react'
-import { Button, Header, Input, Form } from 'semantic-ui-react'
-export default function NewQuestion() {
+import { connect } from 'react-redux'
+import { Button, Header, Form } from 'semantic-ui-react'
+import { handleSaveQuestion } from '../../redux/actions/questions'
+import { useHistory } from 'react-router-dom'
+function NewQuestion({ dispatch, authedUser, loadingBar }) {
+
+  const [options, setOptions] = useState({ optionOne: '', optionTwo: '' })
+  const history = useHistory()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(handleSaveQuestion(
+      {
+        optionOneText: options.optionOne,
+        optionTwoText: options.optionTwo,
+        author: authedUser
+      }))
+    setOptions({ optionOne: '', optionTwo: '' })
+    history.push('/')
+  }
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-
-      <Form style={{ width: '50%', textAlign: 'center' }} >
-        <Header>Create New Question</Header>
-        <Header>Complete the question</Header>
+    <div style={{ display: 'flex', justifyContent: 'center'}}>
+      <Form onSubmit={handleSubmit} style={{ width: '50%', textAlign: 'center' ,
+       border:'2px solid #b4b7ca26', padding: '20px'}} >
+        <Header size='huge'>Create New Question</Header>
         <Header>Would you rather..</Header>
-        <Form.Field>
-          <Input placeholder='Enter Option One Text' />
-        </Form.Field>
-        <Header>OR</Header>
-        <Form.Field>
-          <Input placeholder='Enter Option Two Text' />
-        </Form.Field>
+        <Form.Input placeholder='Enter Option One Text'
+          value={options.optionOne}
+          onChange={(e, { value }) => setOptions({ ...options, optionOne: value })}
+        />
 
-        <Button color='instagram'>Submit</Button>
+        <Header>OR</Header>
+        <Form.Input placeholder='Enter Option Two Text'
+          value={options.optionTwo}
+          onChange={(e, { value }) => setOptions({ ...options, optionTwo: value })}
+        />
+        <Button disabled={(options.optionOne === '' || options.optionTwo === '')}
+          primary>Submit</Button>
       </Form>
 
     </div>
   )
 }
+
+export default connect(
+  ({ authedUser, loadingBar }) => ({
+    authedUser,
+    loadingBar
+  })
+)(NewQuestion)

@@ -1,4 +1,4 @@
-import { _getQuestions, _getUsers, _saveQuestionAnswer } from './_DATA'
+import { _getQuestions, _getUsers, _saveQuestionAnswer, _saveQuestion } from './_DATA'
 
 export function getInitialData() {
   return Promise.all([
@@ -19,4 +19,8 @@ export function formatDate(timestamp) {
   const d = new Date(timestamp)
   const time = d.toLocaleTimeString('en-US')
   return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
+}
+
+export function saveQuestion({ optionOneText, optionTwoText, author }){
+  return _saveQuestion({ optionOneText, optionTwoText, author })
 }

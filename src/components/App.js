@@ -10,6 +10,7 @@ import LeaderBoard from './leaderBoard/leaderBoard'
 import NewQuestion from './newQuestion/newQuestion'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../redux/actions/shared'
+import LoadingBar from 'react-redux-loading';
 class App extends React.Component {
 
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends React.Component {
     const { authedUser } = this.props
     return (
       <div className='app'>
+        <LoadingBar />
         <NavBar />
         {
           authedUser === null ?

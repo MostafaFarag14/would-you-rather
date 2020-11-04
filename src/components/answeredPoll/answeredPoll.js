@@ -12,9 +12,12 @@ const AnsweredPoll = ({ result }) => {
       <Image centered src={avatarURL} size='small' bordered circular />
 
       <Header textAlign='center' size='medium'>Results</Header>
-      <Card.Content>
+      <Card.Content style={{backgroundColor: authedUserChoice === 1 ? '#bfcee866' : ''}}>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between' , margin:'10px 0'}}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', margin: '10px 0',
+          
+        }}>
           <Header size='small'>would you rather {optionOneText} ?</Header>
           {
             authedUserChoice === 1 && <Icon name='pointing left' size='big' floated='right' />
@@ -25,8 +28,8 @@ const AnsweredPoll = ({ result }) => {
           </Progress>
 
       </Card.Content>
-      <Card.Content>
-        <div style={{ display: 'flex', justifyContent: 'space-between', margin:'10px 0'}}>
+      <Card.Content style={{backgroundColor: authedUserChoice === 2 ? '#bfcee866' : ''}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0' }}>
           <Header size='small'>would you rather {optionTwoText} ?</Header>
           {
             authedUserChoice === 2 && <Icon name='pointing left' size='big' floated='right' />

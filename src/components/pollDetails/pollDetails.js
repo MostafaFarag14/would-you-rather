@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { Form, Radio, Image, Header, Button } from 'semantic-ui-react';
 import AnsweredPoll from '../answeredPoll/answeredPoll'
 import { handleSaveAnswer } from '../../redux/actions/shared'
